@@ -1,21 +1,24 @@
-
+import logo from './logo.svg';
 import './App.css';
-import { useState} from 'react'
-import Box from './components/Box';
-import Input from './components/Input';
+
 function App() {
-  const [color, setColor] = useState('red')
-  const handleSubmit = () => {
-    setColor(color)
-  }
   return (
-    <div className="main">
-      <Box color={color}/>
-      <Input color={color}
-        setColor={setColor}
-       handleSubmit={handleSubmit}/>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
-    
   );
 }
 
