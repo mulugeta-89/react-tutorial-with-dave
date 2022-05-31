@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button'
-import List from './List'
+import Table from './Table'
 const Form = ({data, reqType, setReqType}) => {
   return (
     <div>
@@ -11,7 +11,7 @@ const Form = ({data, reqType, setReqType}) => {
         <Button buttonText="Comments" setReqType={setReqType}/>
         </div>
         
-        <List data={data}/>
+        <Table data={data}/>
     </div>
   )
 }
