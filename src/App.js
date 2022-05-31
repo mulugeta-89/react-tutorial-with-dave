@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import { useState} from 'react'
 function App() {
+  const[color, setColor] = useState("black")
+  const[isBlack, setIsBlack] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="box" style={{
+        backgroundColor: color,
+        color: isBlack ? 'black' : 'white'
+      }}>
+        <h3>black</h3>
+      </div>
+      <form onSubmit={(e) => e.preventDefault()}>
+      <input 
+        type='text'
+        placeholder='color'
+        value={color}
+        onChange={(e) => setColor(e.target.value)}/>
+        <button type="button" onClick={() => setIsBlack(!isBlack)}>
+          Toggle text color
+        </button>
+      </form>
+      
+    </>
   );
 }
 
