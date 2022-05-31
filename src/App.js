@@ -1,30 +1,36 @@
 
 import './App.css';
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
+import Form from './components/Form';
 function App() {
-  const[color, setColor] = useState("black")
-  const[isBlack, setIsBlack] = useState(false)
-
+  const [data, setData] = useState([])
+  const [reqType, setReqType] = useState("")
+  const API_URL = "https://jsonplaceholder.typicode.com";
+  useEffect(() => {
+    const reqUrl = `${API_URL}/${reqType}`
+    const handleFetch = async() => {
+      try {
+        const response = await fetch(reqUrl)
+        if(!response.ok) throw Error("Did not fetch the data")
+        const haveData = await response.json();
+        setData(haveData)
+      }
+      catch(err){
+        const errMsg = err.message
+        return errMsg
+      }
+    }
+    (async () => await handleFetch())()
+  },[reqType])
+  
+    
   return (
-    <>
-      <div className="box" style={{
-        backgroundColor: color,
-        color: isBlack ? 'black' : 'white'
-      }}>
-        <h3>black</h3>
-      </div>
-      <form onSubmit={(e) => e.preventDefault()}>
-      <input 
-        type='text'
-        placeholder='color'
-        value={color}
-        onChange={(e) => setColor(e.target.value)}/>
-        <button type="button" onClick={() => setIsBlack(!isBlack)}>
-          Toggle text color
-        </button>
-      </form>
-      
-    </>
+    <div>
+      <Form data={data} reqType={reqType} setReqType={setReqType}/>
+    </div>
+
+    
+    
   );
 }
 
